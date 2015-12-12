@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # tracking.js
 
 [![Build Status](http://img.shields.io/travis/eduardolundgren/tracking.js.svg?style=flat)](https://travis-ci.org/eduardolundgren/tracking.js)
@@ -88,3 +89,6 @@ For detailed changelog, check [Releases](https://github.com/eduardolundgren/trac
 ## License
 
 [BSD License](https://github.com/eduardolundgren/tracking.js/blob/master/LICENSE.md) © Eduardo Lundgren
+=======
+# facial_recognition_app
+>>>>>>> 45f567f3d6a719a7651e79945c99f9efc1ab7423

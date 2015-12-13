@@ -22,7 +22,7 @@
   <style>
   video, canvas {
     margin-left: 230px;
-    margin-top: 120px;
+    margin-top:40px;
     position: absolute;
   }
   </style>
@@ -34,19 +34,21 @@
     <button id="track-again-button">track again button</button>
     <input type="button" id="btnSave" value="Save PNG"/>
       <button id="capture">Capture</button>
-    </div>
+  </div>
 
-  <div class="demo-frame">
-    <div class="demo-container">
-      <div class="overlay">
-        <video id="video" width="320" height="240" preload autoplay loop muted></video>
-        <canvas id="canvas" width="320" height="240"></canvas>
-      
+  <div id="wrapper">
+    <div class="demo-frame">
+      <div class="demo-container">
+        <div class="overlay">
+          <video id="video" width="320" height="240" preload autoplay loop muted></video>
+          <canvas id="canvas" width="320" height="240"></canvas>
+        
+        </div>
+        <!-- <div id="img-out">
+        </div> -->
       </div>
-      <!-- <div id="img-out">
-      </div> -->
-      <div id="output"></div>
     </div>
+    <div id="output"></div>
   </div>
 
   <script>

@@ -25,6 +25,11 @@ canvas {
 	z-index: 999;
 }
 video {
-	z-index: 1000;
+	z-index: -1;
 }
 
+#wrapper {
+	margin: 0 auto;
+	display: block;
+	position: relative;
+}

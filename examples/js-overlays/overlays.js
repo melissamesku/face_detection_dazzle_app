@@ -6,7 +6,6 @@ $(function() { // document.ready
 	  	console.log( "Overlay button clicked" );
 	    $('.overlay').empty;
 	    $('.overlay').append('<img src="../overlay-1.png"/>');
-
 	});
 
   $("#track-again-button").click(function() {
@@ -39,6 +38,7 @@ $(function() { // document.ready
       console.log('track again button clicked');
   });
 
+  // this isn't being used
   $("#btnSave").click(function() { 
         html2canvas($("#video"), {
             onrendered: function(canvas) {
@@ -82,7 +82,6 @@ $(function() { // document.ready
 	 
 	    $(initialize);  
 	        
-	 
 	}());
 
 

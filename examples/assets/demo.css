@@ -64,10 +64,6 @@
   border: #fff dotted 1px;
   padding: 3px;
 }
-#output {
-  position: relative;
-  width: 180px;
-}
 
 .dg.ac {
   z-index: 100 !important;

@@ -76,6 +76,8 @@ $(function() { // document.ready
 	              .drawImage(video, 0, 0, canvas.width, canvas.height);
 	 
 	        var img = document.createElement("img");
+	        img.setAttribute("class", "draggable");
+	        img.id = "ui-widget-content";
 	        img.src = canvas.toDataURL();
 	        $output.append(img);
 	    };
@@ -83,6 +85,18 @@ $(function() { // document.ready
 	    $(initialize);  
 	        
 	}());
+
+	  // $(function() {
+	  //   $( "#draggable" ).draggable();
+	  //   $( "#droppable" ).droppable({
+	  //     drop: function( event, ui ) {
+	  //       $( this )
+	  //         .addClass( "ui-state-highlight" )
+	  //         .find( "p" )
+	  //           .html( "Dropped!" );
+	  //     }
+	  //   });
+	  // });
 
 
 

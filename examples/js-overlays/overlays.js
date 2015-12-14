@@ -16,8 +16,8 @@ $(function() { // document.ready
 
   	$("#overlay-button").click(function() {
 	  	console.log( "Overlay button clicked" );
-	    $('.overlay').empty;
-	    $('.overlay').prepend('<img src="../overlay-1.png" width="100%"/>');
+	    // $('.overlay').empty;
+	    $('#droppable').prepend('<img src="../overlay-1.png" width="100%" style="z-index:3000"/>');
 	});
 
 	// this isn't being used

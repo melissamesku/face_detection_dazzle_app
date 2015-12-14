@@ -2,45 +2,27 @@ console.log('working');
 
 $(function() { // document.ready
     console.log('js loaded');
+
+// ================================
+// BASIC BUTTON FUNCTIONALITY
+// ================================
+
+    // $("#camera-on-button").click(function(){ // THIS DOESN'T WORK YET BUT I'LL COME BACK TO IT LATER
+    // 	var wrapper = $('#wrapper');
+    // 	var demoFrame = $('#demo-frame');
+    // 	document.body.append(demoFrame);
+    // 	console.log('clicked to turn camera back on ');
+    // });
+
   	$("#overlay-button").click(function() {
 	  	console.log( "Overlay button clicked" );
 	    $('.overlay').empty;
-	    $('.overlay').append('<img src="../overlay-1.png"/>');
+	    $('.overlay').prepend('<img src="../overlay-1.png" width="100%"/>');
 	});
 
-  $("#track-again-button").click(function() {
-  	var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
-      tracker.setStepSize(1.3);
-
-      tracking.track('#img', tracker);
-
-      tracker.on('track', function(event) {
-        event.data.forEach(function(rect) {
-          window.plot(rect.x, rect.y, rect.width, rect.height);
-        });
-      });
-
-      window.plot = function(x, y, w, h) {
-        if((x != 0) && (y != 0)) {
-        	var rect = document.createElement('div');
-	        document.querySelector('.demo-container').appendChild(rect);
-	        rect.classList.add('rect');
-	        rect.style.width = w + 'px';
-	        rect.style.height = h + 'px';
-	        rect.style.left = (img.offsetLeft + x) + 'px';
-	        rect.style.top = (img.offsetTop + y) + 'px';
-	        console.log('a face has been detected')
-	      }
-        else {
-        	console.log('no face detected');
-        }
-      };
-      console.log('track again button clicked');
-  });
-
-  // this isn't being used
-  $("#btnSave").click(function() { 
-        html2canvas($("#video"), {
+	// this isn't being used
+  	$("#btnSave").click(function() { 
+        html2canvas($("#droppable"), {
             onrendered: function(canvas) {
                 theCanvas = canvas;
                 document.body.appendChild(canvas);
@@ -54,30 +36,61 @@ $(function() { // document.ready
         });
     });
 
-  // Capturing HTML 5 Video To An Image
+  	$("#track-again-button").click(function() {
+  		var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
+      	tracker.setStepSize(1.3);
+
+      	tracking.track('#img', tracker);
+
+      	tracker.on('track', function(event) {
+        	event.data.forEach(function(rect) {
+          	window.plot(rect.x, rect.y, rect.width, rect.height);
+        	});
+      	});
+
+      	window.plot = function(x, y, w, h) {
+        	if((x != 0) && (y != 0)) {
+	        	var rect = document.createElement('div');
+		        document.querySelector('.demo-container').appendChild(rect);
+		        rect.classList.add('rect');
+		        rect.style.width = w + 'px';
+		        rect.style.height = h + 'px';
+		        rect.style.left = (img.offsetLeft + x) + 'px';
+		        rect.style.top = (img.offsetTop + y) + 'px';
+		        console.log('a face has been detected');
+	      	}
+        	else {
+	        	console.log('no face detected');
+	        }
+      	};
+      	console.log('track again button clicked');
+  	});
+
+  	// Capturing HTML 5 Video To An Image
 	// http://odetocode.com/blogs/scott/archive/2013/01/04/capturing-html-5-video-to-an-image.aspx
 	(function() {
 	    "use strict";
 	 
-	    var video, $draggable;
+	    var video, $droppable;
 	    var scale = 0.25;
 	 
 	    var initialize = function() {
-	        $draggable = $("#draggable");
+	        $droppable = $("#droppable");
 	        video = $("#video").get(0);
 	        $("#capture").click(captureImage);                
 	    };
 	 
 	    var captureImage = function() {
+	    	$droppable.empty();
+	    	$("#demo-frame").detach(); //this removes the whole webcam feed div (but it doesn't turn off the camera)
 	        var canvas = document.createElement("canvas");
 	        canvas.width = video.videoWidth * scale;
 	        canvas.height = video.videoHeight * scale;
-	        canvas.getContext('2d')
-	              .drawImage(video, 0, 0, canvas.width, canvas.height);
+	        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 	 
 	        var img = document.createElement("img");
 	        img.src = canvas.toDataURL();
-	        $draggable.append(img);
+	        $droppable.append(img);
 	    };
 	 
 	    $(initialize);  
@@ -85,19 +98,27 @@ $(function() { // document.ready
 	}());
 
 	$(function() {
-	    $( "#draggable" ).draggable();
-	    $( "#droppable" ).droppable({
+	    $("#draggable").draggable();
+	    $("#droppable").droppable({
 	      	drop: function( event, ui ) {
-	        	$( this )
-	          	.addClass( "ui-state-highlight" )
-	          	.find( "p" )
-	           	 .html( "Dropped!" );
+	        	$(this)
+	          	.addClass( "ui-state-highlight")
+	          	.find("p")
+	           	 .html("damn, you're handsome!");
 	      	}
 	    });
 	});
+}); // end document.ready
 
 
 
+
+
+
+
+// ===================================
+// BONEYARD OF DEAD CODE
+// ===================================
 
 
 // Save still image from video 
@@ -144,10 +165,3 @@ $(function() { // document.ready
 	//         output.appendChild(snapshots[i]);
 	//     }
 	// }
-
-
-
-
-
-}); // end document.ready
-

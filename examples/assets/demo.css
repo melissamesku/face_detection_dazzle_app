@@ -42,11 +42,11 @@
 
   border: #eee solid 5px;
   position: absolute;
-  width: 780px;
-  height: 390px;
+  width: 445px;
+  height: 330px;
   top: 50px;
   left: 50%;
-  margin: 20px 0 0 -400px;
+  margin: 0px 0 0 -230px;
 }
 
 .demo-container {

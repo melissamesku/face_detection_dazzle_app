@@ -10,16 +10,18 @@ body {
 }*/
 .overlay {
 	z-index: 1001;
-	border: 2px solid #ccc;
+	border: 2px dotted #ccc;
+	width: 180px;
 
 /*	width: 220px;
     height: 330px;*/
     /*position: relative;*/
     /*overflow: hidden;*/
     border-radius: 10px;
-    position: absolute; 
+
+    /*position: absolute; 
     top: 50px;
-    left: 50px;
+    left: 50px;*/
 }
 canvas {
 	z-index: 999;
@@ -41,10 +43,15 @@ video {
 	width: 200px;
 	height: 180px;
 	border: #eee solid 2px;
+	z-index: 0;
 }
-/*#draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-#droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }*/
+#overlays {
+	border: #fff solid 1px;
 
+}
+/*#draggable {
+	z-index: 0;
+}*/
 
 
 

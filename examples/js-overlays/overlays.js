@@ -59,11 +59,11 @@ $(function() { // document.ready
 	(function() {
 	    "use strict";
 	 
-	    var video, $output;
+	    var video, $draggable;
 	    var scale = 0.25;
 	 
 	    var initialize = function() {
-	        $output = $("#output");
+	        $draggable = $("#draggable");
 	        video = $("#video").get(0);
 	        $("#capture").click(captureImage);                
 	    };
@@ -76,27 +76,25 @@ $(function() { // document.ready
 	              .drawImage(video, 0, 0, canvas.width, canvas.height);
 	 
 	        var img = document.createElement("img");
-	        img.setAttribute("class", "draggable");
-	        img.id = "ui-widget-content";
 	        img.src = canvas.toDataURL();
-	        $output.append(img);
+	        $draggable.append(img);
 	    };
 	 
 	    $(initialize);  
 	        
 	}());
 
-	  // $(function() {
-	  //   $( "#draggable" ).draggable();
-	  //   $( "#droppable" ).droppable({
-	  //     drop: function( event, ui ) {
-	  //       $( this )
-	  //         .addClass( "ui-state-highlight" )
-	  //         .find( "p" )
-	  //           .html( "Dropped!" );
-	  //     }
-	  //   });
-	  // });
+	$(function() {
+	    $( "#draggable" ).draggable();
+	    $( "#droppable" ).droppable({
+	      	drop: function( event, ui ) {
+	        	$( this )
+	          	.addClass( "ui-state-highlight" )
+	          	.find( "p" )
+	           	 .html( "Dropped!" );
+	      	}
+	    });
+	});
 
 
 

@@ -23,17 +23,7 @@
   <script src="assets/stats.min.js"></script>
 
   <script>
-  $(function() {
-    $( "#draggable" ).draggable();
-    $( "#droppable" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      }
-    });
-  });
+  
   </script>
 
   <style>
@@ -63,9 +53,11 @@
         </div>
       </div>
     </div>
-    <div id="output"></div>
-    <div class="ui-widget-content" id="draggable">
-      <img src="/assets/melissa-mesku.jpg" width="100px"/>
+    <div id="output">
+      <div id="draggable" class="ui-widget-content">
+        <!-- <img src="/assets/melissa-mesku.jpg" width="100px"/>
+        <p><span style="color:white;">droppable<span></p> -->
+      </div>
     </div>
     <div id="droppable" class="ui-widget-header"><p><span style="color:white;">drop shit here</span></p></div>
 

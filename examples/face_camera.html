@@ -30,8 +30,49 @@
   });
   </script>
 
+
+  <script>
+        function allowDrop(e)
+        {
+            e.preventDefault();
+        }
+
+        function drag(e)
+        {
+            //store the position of the mouse relativly to the image position
+            e.dataTransfer.setData("mouse_position_x",e.clientX - e.target.offsetLeft );
+            e.dataTransfer.setData("mouse_position_y",e.clientY - e.target.offsetTop  );
+
+            e.dataTransfer.setData("image_id",e.target.id);
+        }
+
+        function drop(e)
+        {
+            e.preventDefault();
+            var image = document.getElementById( e.dataTransfer.getData("image_id") );
+
+            var mouse_position_x = e.dataTransfer.getData("mouse_position_x");
+            var mouse_position_y = e.dataTransfer.getData("mouse_position_y");
+
+            var droppableCanvas = document.getElementById('droppableCanvas');
+            var ctx = droppableCanvas.getContext('2d');
+
+            // the image is drawn on the canvas at the position of the mouse when we lifted the mouse button
+            ctx.drawImage( image , e.clientX - droppableCanvas.offsetLeft - mouse_position_x , e.clientY - droppableCanvas.offsetTop - mouse_position_y );
+        }
+
+        function convertCanvasToImage() {
+            var droppableCanvas = document.getElementById('droppableCanvas');
+
+            var image_src = droppableCanvas.toDataURL("image/png");
+            window.open(image_src);
+
+        }
+
+    </script>   
+
   <style>
-  video, canvas {
+  video, #canvas {
     margin-left: 60px;
     margin-top:40px;
     position: absolute;
@@ -56,7 +97,18 @@
         </div>
     </div>
     <div id="output">
-        <div id="draggable" class="ui-widget-content">
+        <div id="droppable" class="ui-widget-header">
+            <p><span style="color:white;">drop shit here</span></p>
+        </div>
+
+        <img id="img1" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png'/>
+        <img id="img2" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png' width="100"/>
+        <!-- <input type="button" onclick="convertCanvasToImage()" value="Generate Image" style="float:right"/> -->
+        droppable canvas below
+        <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="300" height="300" style="border: 1px solid gray"></canvas>
+
+
+       <!--  <div id="draggable" class="ui-widget-content">
             <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
             <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
         </div>
@@ -69,7 +121,7 @@
         </div>
         <div id="overlays">
           <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
-        </div>
+        </div> -->
     </div>
 </div>
 

@@ -21,20 +21,20 @@ $(function() { // document.ready
 	});
 
 	// this isn't being used
-  	$("#btnSave").click(function() { 
-        html2canvas($("#droppable"), {
-            onrendered: function(canvas) {
-                theCanvas = canvas;
-                document.body.appendChild(canvas);
+  	// $("#btnSave").click(function() { 
+   //      html2canvas($("#droppable"), {
+   //          onrendered: function(canvas) {
+   //              theCanvas = canvas;
+   //              document.body.appendChild(canvas);
 
-                // Convert and download as image 
-                Canvas2Image.saveAsPNG(canvas); 
-                $("#img-out").append(canvas);
-                // Clean up 
-                //document.body.removeChild(canvas);
-            }
-        });
-    });
+   //              // Convert and download as image 
+   //              Canvas2Image.saveAsPNG(canvas); 
+   //              $("#img-out").append(canvas);
+   //              // Clean up 
+   //              //document.body.removeChild(canvas);
+   //          }
+   //      });
+   //  });
 
   	$("#track-again-button").click(function() {
   		var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
@@ -66,8 +66,10 @@ $(function() { // document.ready
       	console.log('track again button clicked');
   	});
 
+
   	// Capturing HTML 5 Video To An Image
 	// http://odetocode.com/blogs/scott/archive/2013/01/04/capturing-html-5-video-to-an-image.aspx
+
 	(function() {
 	    "use strict";
 	 

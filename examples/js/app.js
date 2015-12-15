@@ -14,13 +14,14 @@ $(function() { // document.ready
     // 	console.log('clicked to turn camera back on ');
     // });
 
-  	$("#overlay-button").click(function() {
-	  	console.log( "Overlay button clicked" );
-	    // $('.overlay').empty;
-	    $('#droppable').prepend('<img src="../overlay-1.png" width="100%" style="z-index:3000"/>');
-	});
+//this works but I don't think I'm going to use this functionality
+ //  	$("#overlay-button").click(function() {
+	//   	console.log( "Overlay button clicked" );
+	//     // $('.overlay').empty;
+	//     $('#droppable').prepend('<img src="../overlay-1.png" width="100%" style="z-index:3000"/>');
+	// });
 
-	// this isn't being used
+	// this works and isn't being used
   	// $("#btnSave").click(function() { 
    //      html2canvas($("#droppable"), {
    //          onrendered: function(canvas) {
@@ -73,26 +74,28 @@ $(function() { // document.ready
 	(function() {
 	    "use strict";
 	 
-	    var video, $droppable;
-	    var scale = 0.25;
+	    var video, $droppableCanvas;
+	    // var scale = 0.25; // scale is used below, if needed
 	 
 	    var initialize = function() {
-	        $droppable = $("#droppable");
+	        $droppableCanvas = $('#droppableCanvas');
 	        video = $("#video").get(0);
 	        $("#capture").click(captureImage);                
 	    };
 	 
 	    var captureImage = function() {
-	    	$droppable.empty();
-	    	$("#demo-frame").detach(); //this removes the whole webcam feed div (but it doesn't turn off the camera)
-	        var canvas = document.createElement("canvas");
-	        canvas.width = video.videoWidth * scale;
-	        canvas.height = video.videoHeight * scale;
+	    	$droppableCanvas.empty();
+	    	// $("#demo-frame").detach(); //this removes the whole webcam feed div (but it doesn't turn off the camera)
+	        var canvas = document.getElementById("droppableCanvas"); //testing this solution - just putting image directly into droppable canvas
+	        // canvas.width = video.videoWidth * scale;
+	        // canvas.height = video.videoHeight * scale;
 	        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 	 
 	        var img = document.createElement("img");
+	        img.setAttribute('draggable', 'true');
+	        img.setAttribute('ondragstart', 'drag(event)');
 	        img.src = canvas.toDataURL();
-	        $droppable.append(img);
+	        $('#droppableCanvas').append(img);
 	    };
 	 
 	    $(initialize);  
@@ -104,12 +107,35 @@ $(function() { // document.ready
 	    $("#droppable").droppable({
 	      	drop: function( event, ui ) {
 	        	$(this)
-	          	.addClass( "ui-state-highlight")
+	          	.addClass("ui-state-highlight")
 	          	.find("p")
 	           	 .html("damn, you're handsome!");
 	      	}
 	    });
 	});
+
+	// Upload image, but it's a DataURL unfortunately
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+
+    // http://www.w3schools.com/jsref/dom_obj_fileupload.asp
+ //    var formUpload = document.createElement("INPUT");
+	// formUpload.setAttribute("type", "file");
+	// var formArea = document.getElementById('#form-area');
+	// domIMG.append(formArea);
+
+
 }); // end document.ready
 
 

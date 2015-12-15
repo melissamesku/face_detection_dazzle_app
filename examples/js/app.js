@@ -1,75 +1,21 @@
-console.log('working');
+console.log('app.js is working');
 
 $(function() { // document.ready
-    console.log('js loaded');
+    console.log('app.js document.ready loaded');
 
-// ================================
-// BASIC BUTTON FUNCTIONALITY
-// ================================
-
-    // $("#camera-on-button").click(function(){ // THIS DOESN'T WORK YET BUT I'LL COME BACK TO IT LATER
-    // 	var wrapper = $('#wrapper');
-    // 	var demoFrame = $('#demo-frame');
-    // 	document.body.append(demoFrame);
-    // 	console.log('clicked to turn camera back on ');
-    // });
-
-//this works but I don't think I'm going to use this functionality
- //  	$("#overlay-button").click(function() {
-	//   	console.log( "Overlay button clicked" );
-	//     // $('.overlay').empty;
-	//     $('#droppable').prepend('<img src="../overlay-1.png" width="100%" style="z-index:3000"/>');
-	// });
-
-	// this works and isn't being used
-  	// $("#btnSave").click(function() { 
-   //      html2canvas($("#droppable"), {
-   //          onrendered: function(canvas) {
-   //              theCanvas = canvas;
-   //              document.body.appendChild(canvas);
-
-   //              // Convert and download as image 
-   //              Canvas2Image.saveAsPNG(canvas); 
-   //              $("#img-out").append(canvas);
-   //              // Clean up 
-   //              //document.body.removeChild(canvas);
-   //          }
-   //      });
-   //  });
-
-  	$("#track-again-button").click(function() {
-  		var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
-      	tracker.setStepSize(1.3);
-
-      	tracking.track('#img', tracker);
-
-      	tracker.on('track', function(event) {
-        	event.data.forEach(function(rect) {
-          	window.plot(rect.x, rect.y, rect.width, rect.height);
-        	});
-      	});
-
-      	window.plot = function(x, y, w, h) {
-        	if((x != 0) && (y != 0)) {
-	        	var rect = document.createElement('div');
-		        document.querySelector('.demo-container').appendChild(rect);
-		        rect.classList.add('rect');
-		        rect.style.width = w + 'px';
-		        rect.style.height = h + 'px';
-		        rect.style.left = (img.offsetLeft + x) + 'px';
-		        rect.style.top = (img.offsetTop + y) + 'px';
-		        console.log('a face has been detected');
-	      	}
-        	else {
-	        	console.log('no face detected');
-	        }
-      	};
-      	console.log('track again button clicked');
-  	});
+	// ====================================================================================================================================
+	// BASIC BUTTON FUNCTIONALITY
+	// ====================================================================================================================================
 
 
-  	// Capturing HTML 5 Video To An Image
-	// http://odetocode.com/blogs/scott/archive/2013/01/04/capturing-html-5-video-to-an-image.aspx
+
+
+	// ====================================================================================================================================
+	// VIDEO FACIAL DETECTION FUNCTIONALITY
+	// ====================================================================================================================================
+
+	// CAPTURE IMAGE FROM VIDEO AND INSERT INTO HTML CANVAS ===========================================
+	// thanks to http://odetocode.com/blogs/scott/archive/2013/01/04/capturing-html-5-video-to-an-image.aspx
 
 	(function() {
 	    "use strict";
@@ -136,7 +82,41 @@ $(function() { // document.ready
 	// domIMG.append(formArea);
 
 
-}); // end document.ready
+	// ====================================================================================================================================
+	// STATIC IMAGE FACIAL DETECTION FUNCTIONALITY
+	// ====================================================================================================================================
+
+  	$("#track-again-button").click(function() {
+  		var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
+      	tracker.setStepSize(1.3);
+
+      	tracking.track('#img', tracker);
+
+      	tracker.on('track', function(event) {
+        	event.data.forEach(function(rect) {
+          	window.plot(rect.x, rect.y, rect.width, rect.height);
+        	});
+      	});
+
+      	window.plot = function(x, y, w, h) {
+        	if((x != 0) && (y != 0)) {
+	        	var rect = document.createElement('div');
+		        document.querySelector('.demo-container').appendChild(rect);
+		        rect.classList.add('rect');
+		        rect.style.width = w + 'px';
+		        rect.style.height = h + 'px';
+		        rect.style.left = (img.offsetLeft + x) + 'px';
+		        rect.style.top = (img.offsetTop + y) + 'px';
+		        console.log('a face has been detected');
+	      	}
+        	else {
+	        	console.log('no face detected');
+	        }
+      	};
+      	console.log('track again button clicked');
+  	});
+
+}); // END
 
 
 
@@ -148,48 +128,36 @@ $(function() { // document.ready
 // BONEYARD OF DEAD CODE
 // ===================================
 
+// CANVAS2IMAGE BUTTON TO SAVE CANVAS AS PNG
+// This doesn't work
+// Resource interpreted as Document but transferred with MIME type image/octet-stream: "data:image/octet-stream;base64.....
+  	// $("#btnSave").click(function() {  
+   //      html2canvas($("#droppableCanvas"), {
+   //          onrendered: function(canvas) {
+   //              theCanvas = canvas;
+   //              document.body.appendChild(canvas);
 
-// Save still image from video 
-// from http://appcropolis.com/blog/web-technology/using-html5-canvas-to-capture-frames-from-a-video/
-	// var videoId = 'video';
-	// var scaleFactor = 0.25;
-	// var snapshots = [];
-	 
-	// /**
-	//  * Captures a image frame from the provided video element.
-	//  *
-	//  * @param {Video} video HTML5 video element from where the image frame will be captured.
-	//  * @param {Number} scaleFactor Factor to scale the canvas element that will be return. This is an optional parameter.
-	//  *
-	//  * @return {Canvas}
-	//  */
-	// function capture(video, scaleFactor) {
-	//     if(scaleFactor == null){
-	//         scaleFactor = 1;
-	//     }
-	//     var w = video.videoWidth * scaleFactor;
-	//     var h = video.videoHeight * scaleFactor;
-	//     var canvas = document.createElement('canvas');
-	//         canvas.width  = w;
-	//         canvas.height = h;
-	//     var ctx = canvas.getContext('2d');
-	//         ctx.drawImage(video, 0, 0, w, h);
-	//     return canvas;
-	// } 
-	 
-	// /**
-	//  * Invokes the <code>capture</code> function and attaches the canvas element to the DOM.
-	//  */
-	// function shoot(){
-	//     var video  = document.getElementById(videoId);
-	//     var output = document.getElementById('output');
-	//     var canvas = capture(video, scaleFactor);
-	//         canvas.onclick = function(){
-	//             window.open(this.toDataURL());
-	//         };
-	//     snapshots.unshift(canvas);
-	//     output.innerHTML = '';
-	//     for(var i=0; i<4; i++){
-	//         output.appendChild(snapshots[i]);
-	//     }
-	// }
+   //              // Convert and download as image 
+   //              Canvas2Image.saveAsPNG(theCanvas); 
+   //              $("#img-out").append(theCanvas);
+   //              // Clean up 
+   //              //document.body.removeChild(canvas);
+   //          }
+   //      });
+   //  });
+
+
+    // $("#camera-on-button").click(function(){ // THIS DOESN'T WORK YET BUT I'LL COME BACK TO IT LATER
+    // 	var wrapper = $('#wrapper');
+    // 	var demoFrame = $('#demo-frame');
+    // 	document.body.append(demoFrame);
+    // 	console.log('clicked to turn camera back on ');
+    // });
+
+
+//this works but I don't think I'm going to use this functionality
+ //  	$("#overlay-button").click(function() {
+	//   	console.log( "Overlay button clicked" );
+	//     // $('.overlay').empty;
+	//     $('#droppable').prepend('<img src="../overlay-1.png" width="100%" style="z-index:3000"/>');
+	// });

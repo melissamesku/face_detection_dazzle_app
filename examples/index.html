@@ -2,21 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>tracking.js - face with camera</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/demo.css">
-  <link rel="stylesheet" type="text/css" href="assets/overlays.css">
-  <script src="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/javascript"></script>
+  <title>tracking.js - face with camera</title>
+  <link rel="stylesheet" type="text/css" href="assets/styles.css">
 
-  <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/canvas2image/0.1/canvas2image.min.js" type="text/javascript"></script>
-  <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
   <script src="./js/app.js" type="text/javascript"></script>
   
+  <!-- TRACKING.JS -->
   <script src="http://trackingjs.com/bower/dat-gui/build/dat.gui.min.js"></script>
   <script src="tracking-min.js"></script>
   <script src="face-min.js"></script>
@@ -25,51 +22,37 @@
   <script src="assets/stats.min.js"></script>
 
   <script>
-  $(function() {
-    $( "#resizable" ).resizable();
-  });
-  </script>
+  var allowDrop = function(e){
+        e.preventDefault();
+    }
+    var drag = function(e){
+        //store the position of the mouse relativly to the image position
+        e.dataTransfer.setData("mouse_position_x",e.clientX - e.target.offsetLeft );
+        e.dataTransfer.setData("mouse_position_y",e.clientY - e.target.offsetTop  );
 
+        e.dataTransfer.setData("image_id",e.target.id);
+    }
+    var drop = function(e){
+        e.preventDefault();
+        var image = document.getElementById( e.dataTransfer.getData("image_id") );
 
-  <script>
-        function allowDrop(e)
-        {
-            e.preventDefault();
-        }
+        var mouse_position_x = e.dataTransfer.getData("mouse_position_x");
+        var mouse_position_y = e.dataTransfer.getData("mouse_position_y");
 
-        function drag(e)
-        {
-            //store the position of the mouse relativly to the image position
-            e.dataTransfer.setData("mouse_position_x",e.clientX - e.target.offsetLeft );
-            e.dataTransfer.setData("mouse_position_y",e.clientY - e.target.offsetTop  );
+        var droppableCanvas = document.getElementById('droppableCanvas');
+        var ctx = droppableCanvas.getContext('2d');
 
-            e.dataTransfer.setData("image_id",e.target.id);
-        }
+        // the image is drawn on the canvas at the position of the mouse when we lifted the mouse button
+        ctx.drawImage( image , e.clientX - droppableCanvas.offsetLeft - mouse_position_x , e.clientY - droppableCanvas.offsetTop - mouse_position_y );
+    }
+    var convertCanvasToImage = function(){
+        var droppableCanvas = document.getElementById('droppableCanvas');
 
-        function drop(e)
-        {
-            e.preventDefault();
-            var image = document.getElementById( e.dataTransfer.getData("image_id") );
+        var image_src = droppableCanvas.toDataURL("image/png");
+        window.open(image_src);
+    }
 
-            var mouse_position_x = e.dataTransfer.getData("mouse_position_x");
-            var mouse_position_y = e.dataTransfer.getData("mouse_position_y");
-
-            var droppableCanvas = document.getElementById('droppableCanvas');
-            var ctx = droppableCanvas.getContext('2d');
-
-            // the image is drawn on the canvas at the position of the mouse when we lifted the mouse button
-            ctx.drawImage( image , e.clientX - droppableCanvas.offsetLeft - mouse_position_x , e.clientY - droppableCanvas.offsetTop - mouse_position_y );
-        }
-
-        function convertCanvasToImage() {
-            var droppableCanvas = document.getElementById('droppableCanvas');
-
-            var image_src = droppableCanvas.toDataURL("image/png");
-            window.open(image_src);
-
-        }
-
-    </script>   
+  </script>   
 
   <style>
   video, #canvas {
@@ -77,7 +60,6 @@
     margin-top:40px;
     position: absolute;
   }
-  #resizable { width: 150px; height: 150px; padding: 0.5em; }
   </style>
 </head>
 <body>
@@ -101,27 +83,24 @@
         <div class="demo-container">
             <video id="video" width="320" height="240" preload autoplay loop muted></video>
             <canvas id="canvas" width="320" height="240"></canvas>
+            
         </div>
     </div>
-    <div id="output">
-        <div id="droppable" class="ui-widget-header">
-            <p><span style="color:white;">drop shit here</span></p>
-        </div>
-        <div id="image-from-video">
-        </div>
-
+    <div id="overlays">
         <img id="img1" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png'/>
         <img id="img2" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png' width="100"/>
         <!-- <input type="button" onclick="convertCanvasToImage()" value="Generate Image" style="float:right"/> -->
-        <hr>
-        droppable canvas 
+        <br/>
         <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="320" height="240" style="border: 1px solid gray"></canvas>
+    </div>
 
-        <div id="img-out">
+
+
+    <!--  
+        <div id="droppable" class="ui-widget-header">
+            <p><span style="color:white;">drop shit here</span></p>
         </div>
-
-
-       <!--  <div id="draggable" class="ui-widget-content">
+        <div id="draggable" class="ui-widget-content">
             <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
             <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
         </div>
@@ -135,41 +114,9 @@
         <div id="overlays">
           <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
         </div> -->
-    </div>
 </div>
 
-<script>
-    window.onload = function() {
-      var video = document.getElementById('video');
-      var canvas = document.getElementById('canvas');
-      var context = canvas.getContext('2d');
 
-      var tracker = new tracking.ObjectTracker('face');
-      tracker.setInitialScale(4);
-      tracker.setStepSize(2);
-      tracker.setEdgesDensity(0.1);
-
-      tracking.track('#video', tracker, { camera: true });
-
-      tracker.on('track', function(event) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        event.data.forEach(function(rect) {
-          context.strokeStyle = '#a64ceb';
-          context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-          context.font = '11px Helvetica';
-          context.fillStyle = "#fff";
-          context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
-          context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
-        });
-      });
-
-      var gui = new dat.GUI();
-      gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01);
-      gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1);
-      gui.add(tracker, 'stepSize', 1, 5).step(0.1);
-    };
-</script>
 
 </body>
 </html>

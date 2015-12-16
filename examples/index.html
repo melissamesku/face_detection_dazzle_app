@@ -57,6 +57,7 @@
 <body>
 
 <nav>
+  <h3>cv dazzle</h3>
     <!-- <button id="camera-on-button">turn camera back on</button> -->
     <!-- <button id="overlay-button">overlay 1</button> -->
     <!-- <input type="button" id="btnSave" value="Save PNG"/> -->
@@ -71,17 +72,16 @@
 <div id="wrapper">
     <div class="demo-frame" id="demo-frame">
         <div class="demo-container">
-            <video id="video" width="460" height="345" preload autoplay loop muted></video>
-            <canvas id="canvas" width="320" height="240"></canvas>
-            <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="320" height="240" style="border: 1px solid gray"></canvas>
+            <video id="video" width="400" height="300" preload autoplay loop muted></video>
+            <canvas id="canvas" width="400" height="300"></canvas>
         </div>
         <div id="sandbox">
-
+          <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="400" height="300" style="border: 1px solid gray"></canvas>
         </div>
     </div>
     <div id="overlays">
         <img id="img1" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png'/>
-        <img id="img2" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png' width="100"/>
+        <img id="img2" draggable="true" ondragstart="drag(event)" src='./assets/overlay-2.png'/>
         <!-- <input type="button" onclick="convertCanvasToImage()" value="Generate Image" style="float:right"/> -->
         <br/>
     </div>

@@ -69,7 +69,7 @@ $(function() { // document.ready
         var ctx = droppableCanvas.getContext('2d');
 
         // the image is drawn on the canvas at the position of the mouse when we lifted the mouse button
-        ctx.drawImage( image , e.clientX - droppableCanvas.offsetLeft - mouse_position_x , e.clientY - droppableCanvas.offsetTop - mouse_position_y );
+        ctx.drawImage( image , e.clientX - droppableCanvas.offsetLeft - mouse_position_x, e.clientY - droppableCanvas.offsetTop - mouse_position_y);
     }
     var convertCanvasToImage = function(){
         var droppableCanvas = document.getElementById('droppableCanvas');

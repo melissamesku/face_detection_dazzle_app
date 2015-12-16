@@ -96,7 +96,8 @@ $(function() { // document.ready
 	 
 	    var captureImage = function() {
 	    	$droppableCanvas.empty();
-	    	$("#demo-frame").detach(); //this removes the whole webcam feed div (but it doesn't turn off the camera)
+            $('.dg.ac').detach();
+	    	$('.demo-container').detach(); //this removes the whole webcam feed div (but it doesn't turn off the camera)
 	        var canvas = document.getElementById("droppableCanvas"); //testing this solution - just putting image directly into droppable canvas
 	        // canvas.width = video.videoWidth * scale;
 	        // canvas.height = video.videoHeight * scale;

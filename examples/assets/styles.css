@@ -1,73 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,900);
 
 body {
 	padding: 0;
 	margin: 0;
 	background-color: #fff;
 	color: #eee;
+  font-family: 'Lato';
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Lato';
+  color: #999;
 }
 nav {
   text-align: center;
 }
-
-
-
-.demo-container {
-  /*width: 100%;
-  height: 530px;
-  position: relative;
-  background: #eee;
-  overflow: hidden;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;*/
-
-/*  width: 100%;*/
-/*  background-color: #eee;*/
-  position: relative;
-  border: #000 solid 1px;
-  width: 100%;
-  height: 100%;
+button, button:visited, button:active, button:focus, button:target {
+  padding: 10px;
+  font-size: .9em;
+  font-family: 'Lato';
+  background-color: #0099ff;
+  outline:none;
 }
-
+button:hover {
+  background-color: #0066cc;
+  outline: none;
+}
+p {
+  font-size: .9em;
+  color: #666;
+}
 .dg.ac {
-  z-index: 100 !important;
-  top: 50px !important;
+/*  z-index: 100 !important;
+  top: 50px !important;*/
+  visibility: hidden;
 }
-
-
-div#stats {
+#stats {
 	display: none;
 	visibility: hidden;
 }
-
-
-
-
-
-
-
-/*.demo-container {
-	z-index: 1;
-	position: absolute;
-	top:50px;
-	left:50px;
-}*/
-.overlay {
-	z-index: 1001;
-	border: 2px dotted #ccc;
-	width: 180px;
-
-/*	width: 220px;
-    height: 330px;*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
-    border-radius: 10px;
-
-    /*position: absolute; 
-    top: 50px;
-    left: 50px;*/
-}
 #wrapper {
-	margin: 0 auto;
+	margin: 0;
 	display: block;
 	position: relative;
 }
@@ -76,25 +48,33 @@ div#stats {
   width: 180px;
 }
 #droppable {
-	width: 200px;
-	height: 180px;
+/*	width: 200px;
+	height: 180px;*/
 	border: #eee solid 2px;
 	z-index: 0;
 }
-
-/*#draggable {
-	z-index: 0;
-}*/
 video, #canvas {
     margin-left: 0px;
     position: absolute;
 }
-
-#sandbox {
-  position: relative;
-  border: transparent solid 1px;
-  width: 100%;
-  height: 100%;
+.status-face, .status-not-face {
+  color: transparent;
+  display: none;
+  visibility: hidden;
+}
+p.description {
+  font-size: 1.6em;
+  padding: 0;
+  line-height: .5em;
+  color:#000;
+}
+.centered {
+  text-align: center;
+}
+.grey {
+  background-color: #eee;
+  padding: 30px 0 20px 0;
+  margin-top: 40px;
 }
 
 

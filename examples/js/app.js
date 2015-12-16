@@ -46,6 +46,7 @@ $(function() { // document.ready
       gui.add(tracker, 'stepSize', 1, 5).step(0.1);
     };
 
+
     // DRAG AND DROP FUNCTIONALITY FOR OVERLAYS - WORKS WITH HTML CANVAS ==============================
 	var allowDrop = function(e){
         e.preventDefault();
@@ -76,6 +77,7 @@ $(function() { // document.ready
         var image_src = droppableCanvas.toDataURL("image/png");
         window.open(image_src);
     }
+
 
 	// CAPTURE IMAGE FROM VIDEO AND INSERT INTO HTML CANVAS ===========================================
 	// thanks to http://odetocode.com/blogs/scott/archive/2013/01/04/capturing-html-5-video-to-an-image.aspx
@@ -112,37 +114,66 @@ $(function() { // document.ready
 	}());
 
 
-	// SIMPLE FILE UPLOAD (THOUGH IT'S TO A DATAURL UNFORTUNATELY) ====================================
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
+	//TRYING TO SAVE CANVAS USING HTML2CANVAS TO SAVE AS BLOB =============================================imgInp
+	$(function() { 
+	    $("#btnSave").click(function() { 
+	        html2canvas($("#demo-title"), {
+	            onrendered: function(canvas) {
+	                theCanvas = canvas;
+	                ("#demo-title").appendChild(canvas);
+	                canvas.toBlob(function(blob) {
+						saveAs(blob, "Dashboard.png"); 
+					});
+	            }
+	        });
+	    });
+	}); 
+
+
+
+
+    
 
     // http://www.w3schools.com/jsref/dom_obj_fileupload.asp
- //    var formUpload = document.createElement("INPUT");
+ 	// var formUpload = document.createElement("INPUT");
 	// formUpload.setAttribute("type", "file");
 	// var formArea = document.getElementById('#form-area');
 	// domIMG.append(formArea);
 
 
+
 	// ====================================================================================================================================
 	// STATIC IMAGE FACIAL DETECTION FUNCTIONALITY
 	// ====================================================================================================================================
+    //doesn't work
+    var img = document.getElementById('blah'); //changed this from 'img'
+
+    var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
+    tracker.setStepSize(2);
+
+    tracking.track('#blah', tracker); //changed this from '#img'
+
+    tracker.on('track', function(event) {
+      event.data.forEach(function(rect) {
+        window.plot(rect.x, rect.y, rect.width, rect.height);
+      });
+    });
+
+    window.plot = function(x, y, w, h) {
+      var rect = document.createElement('div');
+      document.querySelector('.static-image-frame').appendChild(rect);
+      rect.classList.add('rect');
+      rect.style.width = w + 'px';
+      rect.style.height = h + 'px';
+      rect.style.left = (img.offsetLeft + x) + 'px';
+      rect.style.top = (img.offsetTop + y) + 'px';
+    };
 
   	$("#track-again-button").click(function() {
   		var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
       	tracker.setStepSize(1.3);
 
-      	tracking.track('#img', tracker);
+      	tracking.track('#blah', tracker);
 
       	tracker.on('track', function(event) {
         	event.data.forEach(function(rect) {
@@ -153,7 +184,7 @@ $(function() { // document.ready
       	window.plot = function(x, y, w, h) {
         	if((x != 0) && (y != 0)) {
 	        	var rect = document.createElement('div');
-		        document.querySelector('.demo-container').appendChild(rect);
+		        document.querySelector('.static-image-frame').appendChild(rect);
 		        rect.classList.add('rect');
 		        rect.style.width = w + 'px';
 		        rect.style.height = h + 'px';
@@ -168,70 +199,20 @@ $(function() { // document.ready
       	console.log('track again button clicked');
   	});
 
+  	// SIMPLE FILE UPLOAD (THOUGH IT'S TO A DATAURL UNFORTUNATELY) ====================================
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+
+
 }); // END
-
-
-
-
-
-
-
-// ===================================
-// BONEYARD OF DEAD CODE
-// ===================================
-
-
-// DRAG AND DROP FUNCTIONALITY ================================================================
-// THIS WORKS, BUT NOT FOR HTML CANVAS
-	// $(function() {
-	//     $("#draggable").draggable();
-	//     $("#droppable").droppable({
-	//       	drop: function( event, ui ) {
-	//         	$(this)
-	//           	.addClass("ui-state-highlight")
-	//           	.find("p")
-	//            	 .html("damn, you're handsome!");
-	//       	}
-	//     });
-	// });
-
-
-// CANVAS2IMAGE BUTTON TO SAVE CANVAS AS PNG
-// This doesn't work, the image comes out empty
-// Resource interpreted as Document but transferred with MIME type image/octet-stream: "data:image/octet-stream;base64.....
-  	// $("#btnSave").click(function() {  
-   //      html2canvas($("#droppableCanvas"), {
-   //          onrendered: function(canvas) {
-   //              theCanvas = canvas;
-   //              document.body.appendChild(canvas);
-
-   //              // Convert and download as image 
-   //              Canvas2Image.saveAsPNG(canvas); 
-   //              $("#img-out").append(canvas);
-   //              // Clean up 
-   //              //document.body.removeChild(canvas);
-   //          }
-   //      });
-   //  });
-
-
-    // $("#camera-on-button").click(function(){ // THIS DOESN'T WORK YET BUT I'LL COME BACK TO IT LATER
-    // 	var wrapper = $('#wrapper');
-    // 	var demoFrame = $('#demo-frame');
-    // 	document.body.append(demoFrame);
-    // 	console.log('clicked to turn camera back on ');
-    // });
-
-
-//this works but I don't think I'm going to use this functionality
- //  	$("#overlay-button").click(function() {
-	//   	console.log( "Overlay button clicked" );
-	//     // $('.overlay').empty;
-	//     $('#droppable').prepend('<img src="../overlay-1.png" width="100%" style="z-index:3000"/>');
-	// });
-
-
-// RESIZABLE  JS
-  // $(function() {
-  //   $( "#resizable" ).resizable();
-  // });

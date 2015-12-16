@@ -7,11 +7,18 @@
   <link rel="stylesheet" type="text/css" href="assets/styles.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" type="text/javascript"></script>
+  <script src="./js/blob.js" type="text/javascript"></script>
+  <script src="./js/canvas-toBlob.js" type="text/javascript"></script>
+  <script src="./js/FileSaver.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/canvas2image/0.1/canvas2image.min.js" type="text/javascript"></script>
+  
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+  
   <script src="./js/app.js" type="text/javascript"></script>
+ 
   
   <!-- TRACKING.JS -->
   <script src="http://trackingjs.com/bower/dat-gui/build/dat.gui.min.js"></script>
@@ -22,60 +29,50 @@
   <script src="assets/stats.min.js"></script>
 
   <script>
+
   var allowDrop = function(e){
-        e.preventDefault();
-    }
-    var drag = function(e){
-        //store the position of the mouse relativly to the image position
-        e.dataTransfer.setData("mouse_position_x",e.clientX - e.target.offsetLeft );
-        e.dataTransfer.setData("mouse_position_y",e.clientY - e.target.offsetTop  );
-
-        e.dataTransfer.setData("image_id",e.target.id);
-    }
-    var drop = function(e){
-        e.preventDefault();
-        var image = document.getElementById( e.dataTransfer.getData("image_id") );
-
-        var mouse_position_x = e.dataTransfer.getData("mouse_position_x");
-        var mouse_position_y = e.dataTransfer.getData("mouse_position_y");
-
-        var droppableCanvas = document.getElementById('droppableCanvas');
-        var ctx = droppableCanvas.getContext('2d');
-
-        // the image is drawn on the canvas at the position of the mouse when we lifted the mouse button
-        ctx.drawImage( image , e.clientX - droppableCanvas.offsetLeft - mouse_position_x , e.clientY - droppableCanvas.offsetTop - mouse_position_y );
-    }
-    var convertCanvasToImage = function(){
-        var droppableCanvas = document.getElementById('droppableCanvas');
-
-        var image_src = droppableCanvas.toDataURL("image/png");
-        window.open(image_src);
-    }
-
-  </script>   
-
-  <style>
-  video, #canvas {
-    margin-left: 60px;
-    margin-top:40px;
-    position: absolute;
+      e.preventDefault();
   }
-  </style>
+  var drag = function(e){
+      //store the position of the mouse relativly to the image position
+      e.dataTransfer.setData("mouse_position_x",e.clientX - e.target.offsetLeft );
+      e.dataTransfer.setData("mouse_position_y",e.clientY - e.target.offsetTop  );
+
+      e.dataTransfer.setData("image_id",e.target.id);
+  }
+  var drop = function(e){
+      e.preventDefault();
+      var image = document.getElementById( e.dataTransfer.getData("image_id") );
+
+      var mouse_position_x = e.dataTransfer.getData("mouse_position_x");
+      var mouse_position_y = e.dataTransfer.getData("mouse_position_y");
+
+      var droppableCanvas = document.getElementById('droppableCanvas');
+      var ctx = droppableCanvas.getContext('2d');
+
+      // the image is drawn on the canvas at the position of the mouse when we lifted the mouse button
+      ctx.drawImage( image , e.clientX - droppableCanvas.offsetLeft - mouse_position_x , e.clientY - droppableCanvas.offsetTop - mouse_position_y );
+  }
+  var convertCanvasToImage = function(){
+      var droppableCanvas = document.getElementById('droppableCanvas');
+
+      var image_src = droppableCanvas.toDataURL("image/png");
+      window.open(image_src);
+  }
+  </script>   
 </head>
 <body>
-<div class="demo-title">
-    <button id="camera-on-button">turn camera back on</button>
-    <button id="overlay-button">overlay 1</button>
-    <button id="track-again-button">track again button</button>
-    <input type="button" id="btnSave" value="Save PNG"/>
+
+<nav>
+    <!-- <button id="camera-on-button">turn camera back on</button> -->
+    <!-- <button id="overlay-button">overlay 1</button> -->
+    <!-- <input type="button" id="btnSave" value="Save PNG"/> -->
+    <button id="track-again-button">Try to detect face</button>
     <button id="capture">Capture</button>
-</div>
-<br/>
-<br/>
-<br/>
+</nav>
+
 <form id="form1" runat="server">
     <input type='file' id="imgInp" />
-    <img id="blah" src="#" alt="your image" />
 </form>
 
 <div id="wrapper">
@@ -83,7 +80,6 @@
         <div class="demo-container">
             <video id="video" width="320" height="240" preload autoplay loop muted></video>
             <canvas id="canvas" width="320" height="240"></canvas>
-            
         </div>
     </div>
     <div id="overlays">
@@ -94,28 +90,11 @@
         <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="320" height="240" style="border: 1px solid gray"></canvas>
     </div>
 
-
-
-    <!--  
-        <div id="droppable" class="ui-widget-header">
-            <p><span style="color:white;">drop shit here</span></p>
-        </div>
-        <div id="draggable" class="ui-widget-content">
-            <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
-            <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
-        </div>
-        <div id="droppable" class="ui-widget-header">
-            <p><span style="color:white;">drop shit here</span></p>
-            <div class="overlay">
-            </div>
-        </div>
-        <div id="img-out">
-        </div>
-        <div id="overlays">
-          <img src="/overlay-1.png" width="100%" id="resizable" class="ui-widget-content"/>
-        </div> -->
 </div>
 
+<div class="static-image-frame">
+    <img id="blah" crossOrigin="Anonymous" src="#" alt="this will be the new image to track" width="150px" />
+</div>
 
 
 </body>

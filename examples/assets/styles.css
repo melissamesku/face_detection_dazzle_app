@@ -102,12 +102,17 @@ p.description {
   padding-bottom: 15px;
 }
 .tips p {
-  font-size: .5em;
+  font-size: .6em;
 }
 #go-to-more p {
   color: #999;
 }
-
+.papayawhip {
+  background-color: papayawhip;
+}
+#accordion div, #accordion h5{
+  border:none;
+}
 
 /*----- FOR STATIC IMAGE FACE DETECTION FUNCTIONALITY ------*/
 .rect {

@@ -82,7 +82,7 @@
     </div>
     <div class="small-12 medium-7 large-7 columns">
       <img src="./assets/cv-dazzle-screenshot.jpg" style="padding-top:15px">
-      <p style="color:#999;"><em>Examples of hair and makeup styles that thwart facial detection, from CVDazzle.com</em></p>
+      <p style="color:#999;"><em>Examples of hair and makeup styles that thwart facial detection, from CVDazzle</em></p>
     </div>
   </div>
   <div class="row centered grey">
@@ -104,7 +104,7 @@
       <img src="./assets/3.png" class="number-icon"/>
       <p class="description"><em>learn more</em></p>
       <p style="padding:0">Learn more about surveillance, facial recognition and facial detection<br/><em>Including more about this site</em></p>
-      <a herf="#go-to-more" class="button">learn more</a>
+      <a href="#go-to-more" class="button">learn more</a>
     </div>
   </div>
 </section>
@@ -139,11 +139,11 @@
     </div> 
     <div class="small-12 medium-7 large-7 columns">
       <div id="accordion">
-        <h5 style="color:#ccc">Examples of CV Dazzle designs that thwart facial detection algorithms</h5>
+        <h5>Examples of CV Dazzle designs that thwart facial detection</h5>
         <div>
           <img src="./assets/cv-dazzle-screenshot-2.jpg" style="padding-top:15px">
         </div>
-        <h5 style="color:#ccc">Tips </h5>
+        <h5>Tips </h5>
         <div class="tips">
           <p>Makeup: Avoid enhancers; they amplify key facial features. This makes your face easier to detect. Instead apply makeup that contrasts with your skin tone in unusual tones and directions: light colors on dark skin, dark colors on light skin.</p>
           <p>Nose Bridge: Partially obscure the nose-bridge area: The region where the nose, eyes, and forehead intersect is a key facial feature. This is especially effective against common face detection algorithms.</p>
@@ -152,13 +152,7 @@
           <p>Head: Obscuring the elliptical shape of a head can also improve your ability to block face detection.</p>
           <p>Asymmetry: Facial-recognition algorithms expect symmetry between the left and right sides of the face. By developing an asymmetrical look, you may decrease your probability of being detected.</p>
         </div>
-      </div>
-
-
-
-
-
-      
+      </div>      
     </div> 
   </div>
 </section>
@@ -170,9 +164,9 @@
 <section id="go-to-static-image">
   <div class="row">
     <h2><em>use facial detection on a photo</em></h2>
-    <div class="small-12 medium-7 large-7 columns">
+    <div class="small-12 medium-4 large-4 columns">
       <form id="form1" runat="server">
-        <input type='file' id="imgInp"/>
+        <input type='file' id="imgInp" class="papayawhip"/>
       </form>
       <div class="static-image-frame">
         <img id="blah" crossOrigin="Anonymous" src="#" width="220px" />
@@ -180,12 +174,14 @@
       <button id="find-face-button">Detect face</button>
       <!-- <button id="find-eye-mouth-button">Detect eyes and mouth</button> -->
     </div>
+    <div class="small-12 medium-3 large-3 columns">
+      <p id="status-face" class="status status-face"><em>Face detected!</em></p>
+      <p id="status-not-face" class="status status-not-face"><em>No face detected</em></p>
+    </div>
     <div class="small-12 medium-5 large-5 columns">
-      <p id="status-face" class="status status-face"><em>Faces detected</em></p>
-      <p id="status-not-face" class="status status-not-face"><em>No faces detected</em></p>
-      <img src="http://farm8.staticflickr.com/7205/6884354620_49503b7c3a_z.jpg">
+      <img src="http://farm8.staticflickr.com/7205/6884354620_49503b7c3a_z.jpg" style="opacity:.7">
       <h5>A facial detection algorithm at work</h5>
-      <p><em>An example of an early stage in the Haar cascade. Each black and white patch represents a feature that the algorithm hunts for in the image.</em></p>
+      <p><em>Each black and white patch represents a feature that the algorithm hunts for in the image.</em></p>
     </div> 
   </div>
 <br/>
@@ -217,6 +213,11 @@
     <div class="small-12 medium-5 large-5 columns">
       <h3> About this project</h3>
       <p>The <em>Face Dazzler For Web</em> application was built using <a href="http://trackingjs.com/">tracking.js</a>, a Javascript library that enables facial detection. The concept for this application is based on <a href="https://cvdazzle.com">CV Dazzle</a> by Adam Harvey, an Brooklyn-based artist whose work explores the impacts of surveillance technologies.</p>
+      <h3> Resources</h3>
+      <p><a href="http://trackingjs.com/">tracking.js</a><br/></p>
+      <p>tracking.js uses the <a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework">Viola-Jones</a> algorithm for facial detection.</p>
+      <p><a href="https://cvdazzle.com/">CV Dazzle</a></p>    
+
     </div>
   </div>
 </section>

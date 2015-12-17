@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>tracking.js - face with camera</title>
+  <title>face dazzler - for web</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="assets/styles.css">
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" type="text/javascript"></script>
-  
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
   
   <script src="./js/app.js" type="text/javascript"></script>
@@ -21,6 +25,12 @@
   <script src="eye-min.js"></script>
   <script src="mouth-min.js"></script>
   <script src="assets/stats.min.js"></script>
+
+  <script>
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+  </script>
 
   <script>
   var allowDrop = function(e){
@@ -57,40 +67,168 @@
 <body>
 
 <nav>
-    <!-- <button id="camera-on-button">turn camera back on</button> -->
-    <!-- <button id="overlay-button">overlay 1</button> -->
-    <!-- <input type="button" id="btnSave" value="Save PNG"/> -->
-    <button id="track-again-button">Try to detect face</button>
-    <button id="capture">Capture</button>
+  <h3>face dazzler <span style="color:#ccc;"><em>for web</em></span></h3>
 </nav>
 
-<form id="form1" runat="server">
-    <input type='file' id="imgInp" />
-</form>
 
-<div id="wrapper">
-    <div class="demo-frame" id="demo-frame">
+
+<section id="landing-container">
+  <div class="row">
+    <div class="small-12 medium-5 large-5 columns">
+      <h2 style="color:#ccc;">thwart facial detection with a couple clicks. </h2>
+      <p>The Face Dazzler web application allows you a degree of protection against facial recognition technology online. <p>
+      <p>Facial recognition technology is pervasive, from street-level security cameras to friends tagging us on Facebook. It's also invasive – when our face is recognized, so is our identity. </p>
+      <p>One way around this is to avoid having our face recognized as <em>a face </em> in the first place. </p>
+    </div>
+    <div class="small-12 medium-7 large-7 columns">
+      <img src="./assets/cv-dazzle-screenshot.jpg" style="padding-top:15px">
+      <p style="color:#999;"><em>Examples of hair and makeup styles that thwart facial detection, from CVDazzle</em></p>
+    </div>
+  </div>
+  <div class="row centered grey">
+    <div class="small-12 medium-4 large-4 columns">
+      <img src="./assets/1.png" class="number-icon"/>
+      <p class="description"><em>experiment with facial detection in real time</em></p>
+      <p>Detect and dazzle your face<br/><em>Experiment with CV Dazzle methods<br/> that circumvent facial detection</em></p>
+      <a href="#go-to-webcam" class="button">use webcam</a>
+    </div> 
+    <div class="small-12 medium-4 large-4 columns">
+      <img src="./assets/2.png" class="number-icon"/>
+      <br/>
+      <br/>
+      <p class="description"><em>check for faces in photos</em></p>
+      <p>After you experiment with digital camouflage, <br/><em>Check to see if you've successfully thwarted facial detection</em></p>
+      <a href="#go-to-static-image" class="button">upload a photo</a>
+    </div> 
+    <div class="small-12 medium-4 large-4 columns">
+      <img src="./assets/3.png" class="number-icon"/>
+      <p class="description"><em>learn more</em></p>
+      <p style="padding:0">Learn more about surveillance, facial recognition and facial detection<br/><em>Including more about this site</em></p>
+      <a href="#go-to-more" class="button">learn more</a>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="go-to-webcam">
+  <div class="row">
+    <h2><em>use facial detection with your webcam</em></h2>
+    <div class="small-12 medium-5 large-5 columns">
+      <button id="start-webcam">turn webcam on</button>
+      <div class="demo-frame" id="demo-frame">
         <div class="demo-container">
-            <video id="video" width="460" height="345" preload autoplay loop muted></video>
-            <canvas id="canvas" width="320" height="240"></canvas>
-            <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="320" height="240" style="border: 1px solid gray"></canvas>
+            <video id="video" width="400" height="300" preload autoplay loop muted></video>
+            <canvas id="canvas" width="400" height="300"></canvas>
         </div>
         <div id="sandbox">
-
+          <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="400" height="300" style="border: 1px solid gray"></canvas>
+          <button id="capture"><img src="./assets/camera.png" width="25px" title="Click to take this picture"></button>
+          <button><img src="./assets/edit.png" width="22px" title="Clear the canvas"></button>
+          <button><img src="./assets/download.png" width="18px" title="Save to desktop"></button>
         </div>
+        
+      </div>
+      <div id="overlays">
+        <img id="img2" draggable="true" ondragstart="drag(event)" src='./assets/overlay-2.png'/>
+        <img id="img3" draggable="true" ondragstart="drag(event)" src='./assets/overlay-3.png'/>
+        <img id="img4" draggable="true" ondragstart="drag(event)" src='./assets/overlay-4.png'/>
+        <img id="img1" draggable="true" ondragstart="drag(event)" src='./assets/overlay-1.png'/>
+        <img id="img0" draggable="true" ondragstart="drag(event)" src='./assets/overlay-1b.png'/>
+      </div>
+    </div> 
+    <div class="small-12 medium-7 large-7 columns">
+      <div id="accordion">
+        <h5>Examples of CV Dazzle designs that thwart facial detection</h5>
+        <div>
+          <img src="./assets/cv-dazzle-screenshot-2.jpg" style="padding-top:15px">
+        </div>
+        <h5>Tips </h5>
+        <div class="tips">
+          <p>Makeup: Avoid enhancers; they amplify key facial features. This makes your face easier to detect. Instead apply makeup that contrasts with your skin tone in unusual tones and directions: light colors on dark skin, dark colors on light skin.</p>
+          <p>Nose Bridge: Partially obscure the nose-bridge area: The region where the nose, eyes, and forehead intersect is a key facial feature. This is especially effective against common face detection algorithms.</p>
+          <p>Eyes: Partially obscure one of the ocular regions: The position and darkness of eyes is a key facial feature.</p>
+          <p>Masks: Avoid wearing masks as they are illegal in some cities. Instead of concealing your face, modify the contrast, tonal gradients, and spatial relationship of dark and light areas using hair, makeup, and/or unique fashion accessories.</p>
+          <p>Head: Obscuring the elliptical shape of a head can also improve your ability to block face detection.</p>
+          <p>Asymmetry: Facial-recognition algorithms expect symmetry between the left and right sides of the face. By developing an asymmetrical look, you may decrease your probability of being detected.</p>
+        </div>
+      </div>      
+    </div> 
+  </div>
+</section>
+
+
+
+
+
+<section id="go-to-static-image">
+  <div class="row">
+    <h2><em>use facial detection on a photo</em></h2>
+    <div class="small-12 medium-4 large-4 columns">
+      <form id="form1" runat="server">
+        <input type='file' id="imgInp" class="papayawhip"/>
+      </form>
+      <div class="static-image-frame">
+        <img id="blah" crossOrigin="Anonymous" src="#" width="220px" />
+      </div>
+      <button id="find-face-button">Detect face</button>
+      <!-- <button id="find-eye-mouth-button">Detect eyes and mouth</button> -->
     </div>
-    <div id="overlays">
-        <img id="img1" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png'/>
-        <img id="img2" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png' width="100"/>
-        <!-- <input type="button" onclick="convertCanvasToImage()" value="Generate Image" style="float:right"/> -->
-        <br/>
+    <div class="small-12 medium-3 large-3 columns">
+      <p id="status-face" class="status status-face"><em>Face detected!</em></p>
+      <p id="status-not-face" class="status status-not-face"><em>No face detected</em></p>
     </div>
-</div>
+    <div class="small-12 medium-5 large-5 columns">
+      <img src="http://farm8.staticflickr.com/7205/6884354620_49503b7c3a_z.jpg" style="opacity:.7">
+      <h5>A facial detection algorithm at work</h5>
+      <p><em>Each black and white patch represents a feature that the algorithm hunts for in the image.</em></p>
+    </div> 
+  </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</section>
 
-<div class="static-image-frame">
-    <img id="blah" crossOrigin="Anonymous" src="#" alt="this will be the new image to track" width="150px" />
-</div>
+
+<section id="go-to-more">
+  <div class="row">
+    <h2><em>more about facial detection</em></h2>
+    <div class="small-12 medium-6 large-6 columns">
+      <iframe src="https://player.vimeo.com/video/12774628" width="500" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <p><a href="https://vimeo.com/12774628">OpenCV Face Detection: Visualized</a> from <a href="https://vimeo.com/adamhrv">Adam Harvey</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+      <p>This video visualizes the detection process of OpenCV&#039;s face detector. The algorithm uses the Viola Jones method of calculating the integral image and then performing some calculations on all the areas defined by the black and white rectangles to analyze the differences between the dark and light regions of a face. The sub-window (in red) is scanned across the image at various scales to detect if there is a potential face within the window. If not, it continues scanning. If it passes all stages in the cascade file, it is marked with a red rectangle. But this does not yet confirm a face. In the post-processing stage all the potential faces are checked for overlaps. Typically, 2 or 3 overlapping rectangles are required to confirm a face. Loner rectangles are rejected as false-positives.<br />This visualization was done as part of the documentation for CV Dazzle, camouflage from face detection. For more information, visit http://cvdazzle.com</p>
+    </div> 
+    <div class="small-12 medium-5 large-5 columns">
+      <h3> About this project</h3>
+      <p>The <em>Face Dazzler For Web</em> application was built using <a href="http://trackingjs.com/">tracking.js</a>, a Javascript library that enables facial detection. The concept for this application is based on <a href="https://cvdazzle.com">CV Dazzle</a> by Adam Harvey, an Brooklyn-based artist whose work explores the impacts of surveillance technologies.</p>
+      <h3> Resources</h3>
+      <p><a href="http://trackingjs.com/">tracking.js</a><br/></p>
+      <p>tracking.js uses the <a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework">Viola-Jones</a> algorithm for facial detection.</p>
+      <p><a href="https://cvdazzle.com/">CV Dazzle</a></p>    
+
+    </div>
+  </div>
+</section>
 
 
+
+<br/>
+<br/>
+<br/>
+<footer>
+  <p>Creative Commons Copyright – All images in the creative commons.</p>
+</footer>
 </body>
 </html>

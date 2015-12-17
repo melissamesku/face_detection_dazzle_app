@@ -1,91 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,900);
 
 body {
 	padding: 0;
 	margin: 0;
-	background-color: #000;
+	background-color: #fff;
 	color: #eee;
+  font-family: 'Lato';
 }
-
-.demo-frame {
-  /*background: url(frame.png) no-repeat;*/
- /* width: 854px;
-  height: 658px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin: -329px 0 0 -429px;
-  padding: 95px 20px 45px 34px;
-  overflow: hidden;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;*/
-
-  border: #eee solid 5px;
-  position: absolute;
-  width: 445px;
-  height: 330px;
-  top: 50px;
-  left: 50%;
-  margin: 0px 0 0 -230px;
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Lato';
+  color: #ccc;
 }
-
-.demo-container {
-  /*width: 100%;
-  height: 530px;
-  position: relative;
-  background: #eee;
-  overflow: hidden;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;*/
-
-/*  width: 100%;*/
-  position: relative;
-  /*background-color: #eee;*/
-  border: #fff dotted 1px;
-  padding: 3px;
+nav {
+  text-align: center;
 }
-
+section {
+  padding-bottom: 70px;
+}
+button, button:visited, button:active, button:focus, button:target, .button, .button:visited, .button:active, .button:focus, .button:target {
+  padding: 10px 15px 12px 15px;
+  font-size: .9em;
+  font-family: 'Lato';
+  background-color: #0099ff;
+  outline:none;
+  min-width: 70px;
+}
+button:hover, .button:hover {
+  background-color: #0066cc;
+  outline: none;
+}
+p {
+  font-size: .9em;
+  color: #666;
+}
+input {
+  color:#666;
+}
+footer p {
+  color: #ccc;
+  padding: 0 0 0 15px;
+}
 .dg.ac {
-  z-index: 100 !important;
-  top: 50px !important;
+/*  z-index: 100 !important;
+  top: 50px !important;*/
+  visibility: hidden;
 }
-
-
-div#stats {
+#stats {
 	display: none;
 	visibility: hidden;
 }
-
-
-
-
-
-
-
-/*.demo-container {
-	z-index: 1;
-	position: absolute;
-	top:50px;
-	left:50px;
-}*/
-.overlay {
-	z-index: 1001;
-	border: 2px dotted #ccc;
-	width: 180px;
-
-/*	width: 220px;
-    height: 330px;*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
-    border-radius: 10px;
-
-    /*position: absolute; 
-    top: 50px;
-    left: 50px;*/
-}
 #wrapper {
-	margin: 0 auto;
+	margin: 0;
 	display: block;
 	position: relative;
 }
@@ -94,22 +59,60 @@ div#stats {
   width: 180px;
 }
 #droppable {
-	width: 200px;
-	height: 180px;
+/*	width: 200px;
+	height: 180px;*/
 	border: #eee solid 2px;
 	z-index: 0;
 }
-
-/*#draggable {
-	z-index: 0;
-}*/
 video, #canvas {
-    margin-left: 60px;
-    margin-top:40px;
+    margin-left: 0px;
     position: absolute;
 }
-
-
+.status {
+  font-size: 2em;
+  color:#0099ff;
+}
+.status-face, .status-not-face {
+  color: transparent;
+  display: none;
+  visibility: hidden;
+}
+p.description {
+  font-size: 1.6em;
+  padding: 0;
+  line-height: .9em;
+  color:#000;
+}
+.centered {
+  text-align: center;
+}
+.grey {
+  background-color: #eee;
+  padding: 30px 0 20px 0;
+  margin-top: 40px;
+}
+#take-picture-button {
+  display:block;
+}
+.static-image-frame {
+  padding-bottom: 30px;
+}
+.number-icon {
+  width: 30px;
+  padding-bottom: 15px;
+}
+.tips p {
+  font-size: .6em;
+}
+#go-to-more p {
+  color: #999;
+}
+.papayawhip {
+  background-color: papayawhip;
+}
+#accordion div, #accordion h5{
+  border:none;
+}
 
 /*----- FOR STATIC IMAGE FACE DETECTION FUNCTIONALITY ------*/
 .rect {

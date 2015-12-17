@@ -36,6 +36,10 @@ p {
 input {
   color:#666;
 }
+footer p {
+  color: #ccc;
+  padding: 0 0 0 15px;
+}
 .dg.ac {
 /*  z-index: 100 !important;
   top: 50px !important;*/
@@ -96,6 +100,12 @@ p.description {
 .number-icon {
   width: 30px;
   padding-bottom: 15px;
+}
+.tips p {
+  font-size: .5em;
+}
+#go-to-more p {
+  color: #999;
 }
 
 

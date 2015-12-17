@@ -39,6 +39,10 @@ input {
 footer p {
   color: #ccc;
   padding: 0 0 0 15px;
+  font-size: .7em;
+}
+footer p a {
+  color: #666;
 }
 .dg.ac {
 /*  z-index: 100 !important;

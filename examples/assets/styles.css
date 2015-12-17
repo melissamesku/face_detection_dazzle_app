@@ -9,7 +9,7 @@ body {
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Lato';
-  color: #999;
+  color: #ccc;
 }
 nav {
   text-align: center;
@@ -18,11 +18,12 @@ section {
   padding-bottom: 70px;
 }
 button, button:visited, button:active, button:focus, button:target, .button, .button:visited, .button:active, .button:focus, .button:target {
-  padding: 10px;
+  padding: 10px 15px 12px 15px;
   font-size: .9em;
   font-family: 'Lato';
   background-color: #0099ff;
   outline:none;
+  min-width: 70px;
 }
 button:hover, .button:hover {
   background-color: #0066cc;
@@ -31,6 +32,9 @@ button:hover, .button:hover {
 p {
   font-size: .9em;
   color: #666;
+}
+input {
+  color:#666;
 }
 .dg.ac {
 /*  z-index: 100 !important;
@@ -60,6 +64,10 @@ video, #canvas {
     margin-left: 0px;
     position: absolute;
 }
+.status {
+  font-size: 2em;
+  color:#0099ff;
+}
 .status-face, .status-not-face {
   color: transparent;
   display: none;
@@ -68,7 +76,7 @@ video, #canvas {
 p.description {
   font-size: 1.6em;
   padding: 0;
-  line-height: .5em;
+  line-height: .9em;
   color:#000;
 }
 .centered {
@@ -84,6 +92,10 @@ p.description {
 }
 .static-image-frame {
   padding-bottom: 30px;
+}
+.number-icon {
+  width: 30px;
+  padding-bottom: 15px;
 }
 
 

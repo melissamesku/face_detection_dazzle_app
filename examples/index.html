@@ -98,19 +98,24 @@
   </div>
   <div class="row centered grey">
     <div class="small-12 medium-4 large-4 columns">
-        <p class="description">webcam</p>
-        <p>Detect and dazzle your face in real-time<br/><em>Experiment with CV Dazzle methods<br/> for thwarting facial recognition</em></p>
-        <a href="#go-to-webcam" class="button">use webcam</a>
+      <img src="./assets/1.png" class="number-icon"/>
+      <p class="description"><em>experiment with facial detection in real time</em></p>
+      <p>Detect and dazzle your face<br/><em>Experiment with CV Dazzle methods<br/> that circumvent facial detection</em></p>
+      <a href="#go-to-webcam" class="button">use webcam</a>
     </div> 
     <div class="small-12 medium-4 large-4 columns">
-        <p class="description">photo</p>
-        <p>Detect and dazzle your face in a photo<br/><em>Experiment with adding digital camouflage and see if you can thwart detection</em></p>
-        <a href="#go-to-static-image" class="button">upload a photo</a>
+      <img src="./assets/2.png" class="number-icon"/>
+      <br/>
+      <br/>
+      <p class="description"><em>check for faces in photos</em></p>
+      <p>After you experiment with digital camouflage, <br/><em>Check to see if you've successfully thwarted facial detection</em></p>
+      <a href="#go-to-static-image" class="button">upload a photo</a>
     </div> 
     <div class="small-12 medium-4 large-4 columns">
-        <p class="description">learn more</p>
-        <p style="padding:0">Learn more about surveillance, facial recognition and facial detection<br/><em>Including more about this site</em></p>
-        <a herf="#go-to-more" class="button">learn more</a>
+      <img src="./assets/3.png" class="number-icon"/>
+      <p class="description"><em>learn more</em></p>
+      <p style="padding:0">Learn more about surveillance, facial recognition and facial detection<br/><em>Including more about this site</em></p>
+      <a herf="#go-to-more" class="button">learn more</a>
     </div>
   </div>
 </section>
@@ -129,12 +134,17 @@
         </div>
         <div id="sandbox">
           <canvas id="droppableCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" width="400" height="300" style="border: 1px solid gray"></canvas>
+          <button id="capture"><img src="./assets/camera.png" width="25px" title="Click to take this picture"></button>
+          <button><img src="./assets/edit.png" width="22px" title="Clear the canvas"></button>
+          <button><img src="./assets/download.png" width="18px" title="Save to desktop"></button>
         </div>
-        <button id="capture">Take picture</button>
+        
       </div>
       <div id="overlays">
-        <img id="img1" draggable="true" ondragstart="drag(event)" src='http://fiddle.jshell.net/img/logo.png'/>
-        <img id="img2" draggable="true" ondragstart="drag(event)" src='./assets/overlay-2.png'/>
+        <img id="img1" draggable="true" ondragstart="drag(event)" src='./assets/overlay-1.png'/>
+        <img id="img2" draggable="true" ondragstart="drag(event)" src='./assets/overlay-1b.png'/>
+        <img id="img3" draggable="true" ondragstart="drag(event)" src='./assets/overlay-2.png'/>
+        <img id="img4" draggable="true" ondragstart="drag(event)" src='./assets/overlay-3.png'/>
       </div>
     </div> 
     <div class="small-12 medium-7 large-7 columns">
@@ -162,8 +172,8 @@
       <!-- <button id="find-eye-mouth-button">Detect eyes and mouth</button> -->
     </div>
     <div class="small-12 medium-7 large-7 columns">
-      <p id="status-face" class="status-face">There's a face</p>
-      <p id="status-not-face" class="status-not-face">No face</p>
+      <p id="status-face" class="status status-face"><em>Faces detected</em></p>
+      <p id="status-not-face" class="status status-not-face"><em>No faces detected</em></p>
     </div> 
   </div>
 

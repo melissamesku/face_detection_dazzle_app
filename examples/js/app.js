@@ -3,18 +3,12 @@ console.log('app.js is working');
 $(function() { // document.ready
   console.log('app.js document.ready loaded');
 
-  // ====================================================================================================================================
-  // GLOBAL VARIABLES
-  // ====================================================================================================================================
-  container = $('#container');
-
-
 
 	// ====================================================================================================================================
 	// BASIC NAV FUNCTIONALITY
 	// ====================================================================================================================================
-  $('#runTracker-button').click(function(){
-    runTracker();
+  $('#start-webcam').click(function(){
+    startWebcamTracker();
   });
 
   $('#start').click(function(){
@@ -31,7 +25,7 @@ $(function() { // document.ready
 
 
     // RUN TRACKING.JS FACIAL DETECTION ON VIDEO STREAM  ===========================================
-  	var runTracker = function() {
+  	var startWebcamTracker = function() {
         var video = document.getElementById('video');
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
@@ -165,7 +159,7 @@ $(function() { // document.ready
       var img = document.getElementById('blah'); //changed this from 'img'
 
       var tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
-      tracker.setStepSize(2);
+      tracker.setStepSize(1.7);
 
       tracking.track('#blah', tracker); //changed this from '#img'
 

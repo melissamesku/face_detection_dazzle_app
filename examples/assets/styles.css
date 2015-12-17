@@ -14,14 +14,17 @@ h1,h2,h3,h4,h5,h6 {
 nav {
   text-align: center;
 }
-button, button:visited, button:active, button:focus, button:target {
+section {
+  padding-bottom: 70px;
+}
+button, button:visited, button:active, button:focus, button:target, .button, .button:visited, .button:active, .button:focus, .button:target {
   padding: 10px;
   font-size: .9em;
   font-family: 'Lato';
   background-color: #0099ff;
   outline:none;
 }
-button:hover {
+button:hover, .button:hover {
   background-color: #0066cc;
   outline: none;
 }
@@ -75,6 +78,12 @@ p.description {
   background-color: #eee;
   padding: 30px 0 20px 0;
   margin-top: 40px;
+}
+#take-picture-button {
+  display:block;
+}
+.static-image-frame {
+  padding-bottom: 30px;
 }
 
 
